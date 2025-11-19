@@ -15,6 +15,7 @@
   html {
     font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+    scroll-behavior: auto; /* we handle smooth via JS to account for offset */
   }
 
   body {
@@ -22,7 +23,19 @@
   }
 }
 
-/* Custom utility classes for shadcn/ui patterns */
+/* Subtle scroll bar styling for dark UI */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb { background: linear-gradient(180deg, rgba(59,130,246,0.35), rgba(34,211,238,0.35)); border-radius: 9999px; }
+*::-webkit-scrollbar-track { background: rgba(15,23,42,0.6); }
+
+/* Keyframes */
+@keyframes scrollCue {
+  0% { transform: translateY(-100%); opacity: 0; }
+  30% { opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+/* Utility hooks */
 @layer utilities {
   .animate-in {
     animation-name: animateIn;
